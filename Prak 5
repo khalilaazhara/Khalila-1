@@ -1,0 +1,105 @@
+class Buku:
+    def __init__(self,kode,nama_kontak,no_telp,email):
+        self.kode = kode
+        self.nama_kontak = nama_kontak
+        self.no_telp = no_telp
+        self.email = email
+
+    def __str__(self):
+        return f"Kode: {self.kode}, Nama Kontak: {self.nama_kontak}, No Telp: {self.no_telp}, Email: {self.email}"
+    
+class databuku:
+    def __init__(self):
+        self.daftar = [ 
+            Buku("C01","Ahmad Dahlan","081234567890","Ahmad@mail.com"),
+            Buku("C02","Susi Susanti","081298765432","Susi@mail.com"),
+            Buku("C03","Dewi Kartika","082143658709","Dewi@mail.com"),
+            Buku("C04","Arya Putra","082189674523","Arya@mail.com")
+        ]
+
+    def tampilkan(self):
+        print()
+        print("===Daftar Kontak===")
+        print()
+        if self.daftar:
+            for i in self.daftar:
+             print(i)
+        else:
+            print("Daftar Kontak Kosong!")
+        print()
+
+    def tambah(self):
+        nomor_terakhir = len(self.daftar) + 1
+        kode_baru = f"C{nomor_terakhir:02d}" 
+        nama = input("Masukkan Nama Kontak: ")
+        no_telp = input("Masukkan No Telp: ")
+        email = input("Masukkan Email: ")
+        self.daftar.append(Buku(kode_baru, nama, no_telp, email))
+        print(f"Kontak dengan kode {kode_baru} berhasil ditambahkan!")
+        print()
+
+    def hapus(self):
+        kode= input("Masukkan kode kontak yang ingin dihapus: ")
+        for p in self.daftar:
+            if p.kode.lower() == kode.lower():
+                self.daftar.remove(p)
+                print("Penghapusan berhasil")
+                return
+        print("Kontak tidak terdapat dalam daftar!")
+            
+    def tampilkanbaru(self):
+        print()
+        print("===Daftar Kontak Terbaru===")
+        print()
+        for i in self.daftar:
+            print(i)
+        print()
+
+    def mencari(self):
+        nama = input("Masukkan nama kontak yang dicari: ")
+        for p in self.daftar:
+            if nama.lower()== p.nama_kontak.lower():
+                print("Data Ditemukan!")
+                print(p)
+                return
+        print("Kontak tidak ditemukan!")
+        print()
+    
+
+data = databuku()
+
+while True:
+    print("Menu Buku Kontak")
+    print("1. Menampilkan daftar kontak ")
+    print("2. Menambah kontak baru")
+    print("3. Menghapus kontak")
+    print("4. Menampilkan daftar kontak setelah perubahan")
+    print("5. Mencari Kontak berdasarkan nama")
+    print("6. Keluar")
+
+    pilihan = input("Masukkan pilihan anda: ")
+    if pilihan == "1":
+        data.tampilkan()
+    elif pilihan == "2":
+        data.tambah()
+    elif pilihan == "3":
+        data.hapus()
+    elif pilihan == "4":
+        data.tampilkanbaru()
+    elif pilihan == "5":
+        data.mencari()
+    elif pilihan == "6":
+        print("Program Selesai! Terima Kasih telah berkunjung!")
+        break
+    else:
+        print("Pilihan tidak valid! Silakan coba kembali.")
+
+
+        
+
+        
+    
+        
+        
+
+        
